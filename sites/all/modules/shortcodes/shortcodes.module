@@ -1,0 +1,516 @@
+<?php
+
+/*
+ * @file
+ * Implements shortcode functionality.
+ */
+ 
+/**
+ * Implements hook_filter_info().
+ */
+function shortcodes_filter_info() {
+  $filters['shortcodes'] = array(
+    'title' => t('Use shortcodes'),
+    'process callback' => '_filter_shortcodes',
+    'tips callback' => '_filter_shortcodes_tips',
+  );
+  
+  return $filters;
+}
+
+/**
+ * Returns a list of shortcodes
+ */
+function shortcodes_list() {
+  $shortcodes = array(
+    'tooltip' => '_shortcodes_tooltip',
+    'quote' => '_shortcodes_quote',
+    'accordion' => '_shortcodes_accordion',
+    'tabgroup' => '_shortcodes_tabs',
+    'button' => '_shortcodes_button',
+    'youtube' => '_shortcodes_youtube',
+    'vimeo' => '_shortcodes_vimeo',
+    'slideshare' => '_shortcodes_slideshare',
+    'slideshow' => '_shortcodes_slideshow',
+    'icon' => '_shortcodes_icon',
+    'dropcap' => '_shortcodes_dropcap',
+    'googlemaps' => '_shortcodes_googlemaps',
+  );
+  
+  return $shortcodes;
+}
+
+/**
+ * Filter tips callback for shortcodes filter.
+ *
+ * @param string $filter Filter name
+ * @param string $format Format name
+ * @param string $long Whet
+ */
+function _filter_shortcodes_tips($filter, $format, $long = FALSE) {
+  return t(
+    'Use shortcodes provided by the shortcodes module. List available online at <a href="!link" target="_blank">here</a>.',
+    array('!link' => 'http://xe.aye.fi/content/shortcodes')
+  );
+}
+
+/**
+ * Shortcode filter. Turn shortcodes into HTML by parsing content and calling appropriate
+ * filters.
+ *
+ * @param string $text Text to filter
+ * @param string $filter Filter name to use
+ */
+function _filter_shortcodes($text, $filter) {
+	$pattern = shortcodes_regex();
+	
+  return preg_replace_callback( "/$pattern/s", 'shortcodes_process', $text);
+}
+
+function shortcodes_process($m) {
+  $shortcodes = shortcodes_list();
+  
+  if (!isset($m[2])) {
+    return;
+  }
+  
+	// [[foo]] syntax for escaping a tag
+	if ( $m[1] == '[' && $m[6] == ']' ) {
+		return substr($m[0], 1, -1);
+	}
+
+	$tag = $m[2];
+	$attr = shortcodes_parse_atts( $m[3] );
+
+  if (isset($shortcodes[$tag]) && function_exists($shortcodes[$tag])) {
+  	if (isset($m[5])) {
+  		// Enclosing tag
+      return $m[1] . call_user_func($shortcodes[$tag], $attr, $m[5], $tag) . $m[6];
+  	} else {
+  		// Self-closing tag
+  		return $m[1] . call_user_func($shortcodes[$tag], $attr, NULL,  $tag) . $m[6];
+    }
+	}
+
+  return '';
+}
+
+/**
+ * Parse shortcodes out of the content
+ */
+function shortcodes_regex($tag = NULL) {
+  $shortcodes = shortcodes_list();
+  
+  if (!isset($tag)) {
+    $tag = join('|', array_map('preg_quote', array_keys($shortcodes)));
+  }
+
+  return
+      '\\['                              // Opening bracket
+    . '(\\[?)'                           // 1: Optional second opening bracket for escaping shortcodes: [[tag]]
+    . "($tag)"                     // 2: Shortcode name
+    . '(?![\\w-])'                       // Not followed by word character or hyphen
+    . '('                                // 3: Unroll the loop: Inside the opening shortcode tag
+    .     '[^\\]\\/]*'                   // Not a closing bracket or forward slash
+    .     '(?:'
+    .         '\\/(?!\\])'               // A forward slash not followed by a closing bracket
+    .         '[^\\]\\/]*'               // Not a closing bracket or forward slash
+    .     ')*?'
+    . ')'
+    . '(?:'
+    .     '(\\/)'                        // 4: Self closing tag ...
+    .     '\\]'                          // ... and closing bracket
+    . '|'
+    .     '\\]'                          // Closing bracket
+    .     '(?:'
+    .         '('                        // 5: Unroll the loop: Optionally, anything between the opening and closing shortcode tags
+    .             '[^\\[]*+'             // Not an opening bracket
+    .             '(?:'
+    .                 '\\[(?!\\/\\2\\])' // An opening bracket not followed by the closing shortcode tag
+    .                 '[^\\[]*+'         // Not an opening bracket
+    .             ')*+'
+    .         ')'
+    .         '\\[\\/\\2\\]'             // Closing shortcode tag
+    .     ')?'
+    . ')'
+    . '(\\]?)';                          // 6: Optional second closing brocket for escaping shortcodes: [[tag]]
+}
+
+/**
+ * Parse attributes
+ */
+function shortcodes_parse_atts($text) {
+  $atts = array();
+  $pattern = '/(\w+)\s*=\s*"([^"]*)"(?:\s|$)|(\w+)\s*=\s*\'([^\']*)\'(?:\s|$)|(\w+)\s*=\s*([^\s\'"]+)(?:\s|$)|"([^"]*)"(?:\s|$)|(\S+)(?:\s|$)/';
+  $text = preg_replace("/[\x{00a0}\x{200b}]+/u", " ", $text);
+  if ( preg_match_all($pattern, $text, $match, PREG_SET_ORDER) ) {
+    foreach ($match as $m) {
+      if (!empty($m[1]))
+        $atts[strtolower($m[1])] = stripcslashes($m[2]);
+      elseif (!empty($m[3]))
+        $atts[strtolower($m[3])] = stripcslashes($m[4]);
+      elseif (!empty($m[5]))
+        $atts[strtolower($m[5])] = stripcslashes($m[6]);
+      elseif (isset($m[7]) and strlen($m[7]))
+        $atts[] = stripcslashes($m[7]);
+      elseif (isset($m[8]))
+        $atts[] = stripcslashes($m[8]);
+    }
+  } else {
+    $atts = ltrim($text);
+  }
+  return $atts;
+}
+
+/**
+ * Shortcode filter: button
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_button($attr, $content, $tag) {
+  $attr['color'] = isset($attr['color']) ? $attr['color'] : '';
+  $attr['href'] = isset($attr['href']) ? $attr['href'] : '';
+  $attr['target'] = isset($attr['target']) ? $attr['target'] : '';
+  return "<a class='button {$attr['color']}' href='{$attr['href']}' target='{$attr['target']}'>{$content}</a>";
+}
+
+/**
+ * Shortcode filter: tooltip
+ *
+ * Requires Twitter Bootstrap (not provided here, theme implementation required)
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_tooltip($attr, $content, $tag) {
+  if (isset($attr['tip']) && !empty($attr['tip'])) {
+    $tip = htmlspecialchars($attr['tip'], ENT_QUOTES);
+    return "<a href='#' rel='tooltip' data-toggle='tooltip' data-original-title='{$tip}'>{$content}</a>";
+  } else {
+    return $content;
+  }
+}
+
+/**
+ * Shortcode filter: dropcap
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_dropcap($attr, $content, $tag) {
+  return "<span class='dropcap'>{$content}</span>";
+}
+
+/**
+ * Shortcode filter: tabs
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_tabs($attr, $content, $tag) {
+  $tabs_id = 'tabgroup-' . uniqid();
+  
+  // Get tabs
+	$pattern = shortcodes_regex('tab');
+  $matches = array();
+  preg_match_all("/$pattern/s", $content, $matches);
+  
+  // Create HTML for tabs
+  $tabs_nav = "<ul class='nav nav-tabs bstabs'>";
+  $tabs_content = '<div class="tab-content">';
+  foreach ($matches[0] as $key => $match) {
+    $active_class = $key == 0 ? 'active' : '';
+    
+    // Add tab navigation
+    $attr = shortcodes_parse_atts($matches[3][$key]);
+    $tabs_nav .= "<li class='{$active_class}'><a href='#{$tabs_id}-tab-{$key}'>{$attr['title']}</a></li>";
+    
+    // Add tab content
+    $content = $matches[5][$key];
+    $tabs_content .= "<div class='tab-pane {$active_class}' id='{$tabs_id}-tab-{$key}'>{$content}</div>";
+  }
+  $tabs_nav .= '</ul>';
+  $tabs_content .= '</div>';
+  
+  return $tabs_nav . $tabs_content;
+}
+
+/**
+ * Shortcode filter: accordion
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_accordion($attr, $content, $tag) {
+  $accordion_id = 'accordion-' . uniqid();
+  
+  // Get tabs
+	$pattern = shortcodes_regex('toggle');
+  $matches = array();
+  preg_match_all("/$pattern/s", $content, $matches);
+  
+  $output = "<div class='accordion' id='{$accordion_id}'>";
+  foreach ($matches[0] as $key => $match) {
+    $attr = shortcodes_parse_atts($matches[3][$key]);
+
+    $output .= '<div class="accordion-group">';
+      $output .= '<div class="accordion-heading">';
+        $output .= "<a class='accordion-toggle' data-toggle='collapse' data-parent='#{$accordion_id}' href='#{$accordion_id}-toggle-{$key}'>";
+          $output .= $attr['title'];
+        $output .= '</a>';
+      $output .= '</div>';
+      $output .= "<div id='{$accordion_id}-toggle-{$key}' class='accordion-body collapse'>";
+        $output .= '<div class="accordion-inner">';
+          $output .= $matches[5][$key];
+        $output .= '</div>';
+      $output .= '</div>';
+    $output .= '</div>';
+  }
+  $output .= '</div>';
+  
+  return $output;
+}
+
+/**
+ * Shortcode filter: icon
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_icon($attr, $content, $tag) {
+  if (isset($attr['type'])) {
+    return "<span class='scicon-{$attr['type']}'></span>";
+  }
+  
+  return '';
+}
+
+/**
+ * Shortcode filter: quote
+ *
+ * If alignment is not specified, blockquote will be used. If it's specified,
+ * pullquote will be used.
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_quote($attr, $content, $tag) {
+  if (isset($attr['align']) && ($attr['align'] == 'right' || $attr['align'] == 'left')) {
+    return "<div class='pullquote {$attr['align']}'>{$content}</div>";
+  }
+
+  if (isset($attr['author']) && !empty($attr['author'])) {
+    $content .= "<footer>- {$attr['author']}</footer>";
+  }
+  
+  return "<blockquote>{$content}</blockquote>";
+}
+
+/**
+ * Shortcode filter: Youtube
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $url video URL, placed inside the tags
+ * @param string $tag Tag name
+ */
+function _shortcodes_youtube($attr, $url, $tag) {
+  $height = '315';
+  $width = '560';
+
+  // Validate height and width
+  if (isset($attr['height']) && !empty($attr['height']) && ctype_digit($attr['height'])) {
+    $height = $attr['height'];
+  }
+
+  if (isset($attr['width']) && !empty($attr['width']) && ctype_digit($attr['width'])) {
+    $width = $attr['width'];
+  }
+
+  // Youtube URLs are like http://www.youtube.com/watch?v=8xfpU0yIpG4 while embed URLs are like http://www.youtube.com/embed/8xfpU0yIpG4
+  $components = parse_url($url);
+  parse_str($components['query'], $query);
+  $url = $components['scheme'] . '://' . $components['host'] . '/embed/' . $query['v'];
+
+  // Check if HD is enabled
+  if (isset($attr['hd']) && ($attr['hd'] == '720' || $attr['hd'] == '1080')) {
+    $url .= '?vq=hd' . $attr['hd'];
+  }
+
+  return "<iframe width='{$width}' height='{$height}' src='{$url}' frameborder='0' allowfullscreen></iframe>";
+}
+
+/**
+ * Shortcode filter: Vimeo
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $url video URL, placed inside the tags
+ * @param string $tag Tag name
+ */
+function _shortcodes_vimeo($attr, $url, $tag) {
+  $height = '314';
+  $width = '560';
+
+  // Validate height and width
+  if (isset($attr['height']) && !empty($attr['height']) && ctype_digit($attr['height'])) {
+    $height = $attr['height'];
+  }
+
+  if (isset($attr['width']) && !empty($attr['width']) && ctype_digit($attr['width'])) {
+    $width = $attr['width'];
+  }
+
+  // Vimeo URLs are like http://vimeo.com/57924306 while embed URLs are like http://player.vimeo.com/video/61589662
+  $components = parse_url($url);
+  $url = $components['scheme'] . '://player.vimeo.com/video' . $components['path'];
+
+  // Go through options and add to the query
+  $query = array();
+
+  // Normal options need to be removed from the query if true
+  $options = array('title', 'byline', 'portrait');
+  foreach ($options as $option) {
+    if (!isset($attr[$option]) || $attr[$option] != '1') {
+      $query[$option] = $option . '=0';
+    }
+  }
+
+  // Special options need to be added to the query if true
+  $special_options = array('autoplay', 'loop');
+  foreach ($special_options as $special_option) {
+    if (isset($attr[$special_option]) && $attr[$special_option] == '1') {
+      $query[$special_option] = $special_option . '=1';
+    }
+  }
+
+  // Validate color
+  $query['color'] = 'color=e34d25';
+  if (isset($attr['color']) && preg_match('/^(?:[0-9a-fA-F]{6})$/', $attr['color'])) {
+    $query['color'] = $attr['color'];
+  }
+
+  // Add query string to the URL if there are key-value pairs
+  if (!empty($query)) {
+    $url .= '?' . implode('&amp;', $query);
+  }
+
+  return "<iframe src='{$url}' width='{$width}' height='{$height}' frameborder='0' webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>";
+}
+
+/**
+ * Shortcode filter: SlideShare
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $url SlideShare URL, placed inside the tags
+ * @param string $tag Tag name
+ */
+function _shortcodes_slideshare($attr, $slideshow_url, $tag) {
+  $height = '357';
+  $width = '429';
+
+  // Validate height and width
+  if (isset($attr['height']) && !empty($attr['height']) && ctype_digit($attr['height'])) {
+    $height = $attr['height'];
+  }
+
+  if (isset($attr['width']) && !empty($attr['width']) && ctype_digit($attr['width'])) {
+    $width = $attr['width'];
+  }
+
+  // Request slideshow URL
+  $ts = time();
+  $data = array(
+    'api_key' => 'aZqgepz4',
+    'ts' => $ts,
+    'hash' => sha1('u0hHeHLs' . $ts),
+    'slideshow_url' => $slideshow_url,
+    'detailed' => 1
+  );
+  $url = url('https://www.slideshare.net/api/2/get_slideshow', array('query' => $data));
+
+  $response = drupal_http_request($url);
+  $data = simplexml_load_string($response->data);
+
+  if (isset($data->ID)) {
+    return "<iframe src='http://www.slideshare.net/slideshow/embed_code/{$data->ID}?rel=0' width='{$width}' height='{$height}' frameborder='0' marginwidth='0' marginheight='0' scrolling='no' style='border:1px solid #CCC;border-width:1px 1px 0;margin-bottom:5px' allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>";
+  } else {
+    return t('Error getting slideshow data. Please use embed code from the SlideShare website.');
+  }
+}
+
+/**
+ * Shortcode filter: Google Maps
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $address Address that will be geocoded and shown as Google Maps
+ * @param string $tag Tag name
+ */
+function _shortcodes_googlemaps($attr, $address, $tag) {
+  $height = '350';
+  $width = '425';
+
+  // Validate height and width
+  if (isset($attr['height']) && !empty($attr['height']) && ctype_digit($attr['height'])) {
+    $height = $attr['height'];
+  }
+
+  if (isset($attr['width']) && !empty($attr['width']) && ctype_digit($attr['width'])) {
+    $width = $attr['width'];
+  }
+
+  // Output as an address which will be turned into embed Google Maps in shortcodes.js
+  return "<address class='googlemaps' data-width='{$width}' data-height='{$height}'>{$address}</address>";
+
+}
+
+/**
+ * Shortcode filter: slideshow
+ *
+ * @param array $attr Contain shortcode attributes
+ * @param string $content Content inside the shortcode
+ * @param string $tag Tag name
+ */
+function _shortcodes_slideshow($attr, $content, $tag) {
+  // Set options
+  $timeout = 4000;
+  if (isset($attr['timeout']) && ctype_digit($attr['timeout'])) {
+    $timeout = $attr['timeout'];
+  }
+
+  // To make user's life easier, use scroll instead of scrollHorz
+  $fxs = array(
+    'scroll' => 'scrollHorz',
+    'fade' => 'fade',
+  );
+  $fx = 'scrollHorz';
+  if (isset($attr['fx']) && isset($fxs[$attr['fx']])) {
+    $fx = $fxs[$attr['fx']];
+  }
+
+  // Replace \n\r with \n since we cannot know what EOL is going to be used
+  // and strip whitespace
+  $content = trim(str_replace("\r\n", "\n", $content));
+  $images = explode("\n", $content);
+
+  $output = '<div class="image-slideshow">';
+  $output .= "<div class='slides' data-timeout='{$timeout}' data-fx='{$fx}'>";
+  foreach ($images as $image) {
+    $output .= "<img src='{$image}' />";
+  }
+  $output .= '</div>';
+  $output .= '<div class="controller">';
+  $output .= '<a class="prev"></a>';
+  $output .= '<a class="next"></a>';
+  $output .= '</div>';
+  $output .= '</div>';
+
+
+  return $output;
+}

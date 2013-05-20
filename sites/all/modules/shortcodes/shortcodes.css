@@ -1,0 +1,182 @@
+blockquote footer {
+	background:inherit;
+	color: inherit;
+}
+
+.toggle-content-heading {
+	cursor:pointer;
+}
+
+.toggle-content {
+	display:none;
+}
+
+.image-slideshow { 
+	overflow: hidden;
+	position: relative;
+	display:inline-block;
+}
+
+.image-slideshow .controller {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	height:24px;
+	z-index: 50;
+}
+
+.image-slideshow .controller a {
+	background-color: #E34D25;
+	background-repeat: no-repeat;
+	background-position: center center;
+	cursor:pointer;
+	display: inline-block;
+	padding:12px 12px;
+	margin: 0;
+	opacity: 0.5;
+	filter: alpha(opacity=50);
+}
+
+.image-slideshow .controller a:hover {
+  opacity: 0.9;
+  filter: alpha(opacity=90);
+}
+
+.image-slideshow .controller a.prev{background-image: url(images/prev.png)}
+.image-slideshow .controller a.next{background-image: url(images/next.png)}
+
+.dropcap {
+	float: left;
+	font-size:48px !important;
+	line-height:1em;
+}
+
+.pullquote {
+  padding: 10px;
+  float:right;
+  width:200px;
+  margin-top: 10px;
+  margin-bottom:10px;
+  margin-left:20px;
+  border:2px solid #e34d25;
+  border-width:2px 0;
+  font-size:16px;
+  text-align:center;
+  line-height:25px;
+  font-style:italic;
+  font-weight:normal;
+}
+
+.pullquote.left{
+  float:left;
+  margin-left:0;
+  margin-right:20px;
+}
+
+span[class*='scicon-'] {
+	background-image: url(images/icons.png); 
+	background-color: transparent; 
+	background-repeat: no-repeat;
+	display:inline-block;
+  vertical-align:middle;
+  margin-right:6px;
+	height:32px;
+	width:32px;
+}
+
+.scicon-64 {background-position: -198px -297px;}
+.scicon-address {background-position: -33px -33px;}
+.scicon-advanced {background-position: 0 -165px;}
+.scicon-applications {background-position: -33px -264px;}
+.scicon-archive {background-position: 0 -99px;}
+.scicon-back {background-position: -33px -297px;}
+.scicon-bookmark {background-position: -66px -33px;}
+.scicon-calculator {background-position: -66px -99px;}
+.scicon-cash {background-position: 0 -132px;}
+.scicon-chat {background-position: -66px -132px;}
+.scicon-cloudy {background-position: -33px -66px;}
+.scicon-color {background-position: -99px 0;}
+.scicon-compose {background-position: -132px -165px;}
+.scicon-computer {background-position: -66px -363px;}
+.scicon-computer2 {background-position: 0 -330px;}
+.scicon-computer3 {background-position: -165px -165px;}
+.scicon-copy {background-position: -66px -330px;}
+.scicon-creditcard {background-position: -33px -165px;}
+.scicon-deletearchive {background-position: -66px -297px;}
+.scicon-desktop {background-position: -99px -231px;}
+.scicon-desktop2 {background-position: -132px -264px;}
+.scicon-down {background-position: -132px -66px;}
+.scicon-edit {background-position: -165px -231px;}
+.scicon-exclamation {background-position: -198px -330px;}
+.scicon-exit {background-position: -231px -33px;}
+.scicon-folder {background-position: -99px -264px;}
+.scicon-folder2 {background-position: -231px -264px;}
+.scicon-forward {background-position: -198px -363px;}
+.scicon-forward2 {background-position: -33px -198px;}
+.scicon-forwardfolder {background-position: -165px -99px;}
+.scicon-forwardmail {background-position: -165px -264px;}
+.scicon-globe {background-position: -33px -231px;}
+.scicon-globe2 {background-position: -33px -363px;}
+.scicon-happy {background-position: -165px -363px;}
+.scicon-harddrive {background-position: -66px -264px;}
+.scicon-heineken {background-position: 0 -66px;}
+.scicon-help {background-position: -198px -231px;}
+.scicon-info {background-position: -231px -330px;}
+.scicon-install {background-position: -99px -297px;}
+.scicon-intel {background-position: -231px 0;}
+.scicon-intel2 {background-position: -99px -66px;}
+.scicon-keyboard {background-position: -99px -99px;}
+.scicon-lock {background-position: -165px -33px;}
+.scicon-minus {background-position: -198px -165px;}
+.scicon-minus2 {background-position: -33px -99px;}
+.scicon-monitor {background-position: -66px -198px;}
+.scicon-moon {background-position: -66px -231px;}
+.scicon-moon2 {background-position: 0 0;}
+.scicon-movies {background-position: -33px -132px;}
+.scicon-movies2 {background-position: -231px -297px;}
+.scicon-music {background-position: -165px -330px;}
+.scicon-music2 {background-position: -66px -66px;}
+.scicon-newarchive {background-position: -132px -363px;}
+.scicon-newdoc {background-position: -132px -297px;}
+.scicon-next {background-position: -231px -165px;}
+.scicon-notebook {background-position: -99px -33px;}
+.scicon-open {background-position: -198px -99px;}
+.scicon-pause {background-position: -165px -132px;}
+.scicon-phone {background-position: -165px 0;}
+.scicon-picture {background-position: 0 -33px;}
+.scicon-picturecast {background-position: 0 -231px;}
+.scicon-play {background-position: -198px -132px;}
+.scicon-plus {background-position: -132px -198px;}
+.scicon-podcast {background-position: -99px -363px;}
+.scicon-preferences {background-position: 0 -198px;}
+.scicon-public {background-position: -231px -198px;}
+.scicon-radioactive {background-position: -132px -231px;}
+.scicon-record {background-position: -198px -33px;}
+.scicon-refresh {background-position: -231px -363px;}
+.scicon-remove {background-position: -132px -33px;}
+.scicon-rewind {background-position: 0 -363px;}
+.scicon-rewind2 {background-position: -132px -132px;}
+.scicon-rss {background-position: -66px -165px;}
+.scicon-rss2 {background-position: -132px 0;}
+.scicon-sad {background-position: -165px -198px;}
+.scicon-search {background-position: -231px -99px;}
+.scicon-send {background-position: 0 -297px;}
+.scicon-server {background-position: -99px -330px;}
+.scicon-splash {background-position: -198px -264px;}
+.scicon-star {background-position: -231px -132px;}
+.scicon-stop {background-position: -66px 0;}
+.scicon-stop2 {background-position: -99px -165px;}
+.scicon-stop3 {background-position: -33px 0;}
+.scicon-sun {background-position: -33px -330px;}
+.scicon-terminal {background-position: -231px -231px;}
+.scicon-trahsfull {background-position: -99px -198px;}
+.scicon-trash {background-position: -99px -132px;}
+.scicon-unarchive {background-position: -132px -99px;}
+.scicon-unread {background-position: -198px -198px;}
+.scicon-up {background-position: -132px -330px;}
+.scicon-user {background-position: -165px -66px;}
+.scicon-users {background-position: -198px 0;}
+.scicon-window {background-position: -165px -297px;}
+.scicon-yinyang {background-position: 0 -264px;}
+.scicon-zoomin {background-position: -231px -66px;}
+.scicon-zoomout {background-position: -198px -66px;}

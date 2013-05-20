@@ -1,0 +1,7 @@
+name = Shortcodes
+description = Provides a shortcode text filter. To be used with laurikar themes (http://themeforest.net/user/laurikar/portfolio)
+core = 7.x
+
+stylesheets[all][] = shortcodes.css
+scripts[] = js/jquery.cycle.all.min.js
+scripts[] = js/shortcodes.js
