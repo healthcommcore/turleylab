@@ -406,8 +406,8 @@ nav ul {
 /* ----- =Sidebar ----- */
 
 #sidebar {
-	background:url(images/sidebar.png) repeat-y left top;
-	border-top:5px solid #f2f2f2;
+/*	background:url(images/sidebar.png) repeat-y left top;
+	border-top:5px solid #f2f2f2;*/
 	padding-bottom:30px;
 	padding-top:30px;
 	padding-left:30px;
@@ -452,6 +452,8 @@ nav ul {
 }
 
 @media (max-width: 767px) {
+	#sidebar{display:none;}
+
 	.node-article .user-picture {
 		margin-right:12px;
 		margin-bottom:0;

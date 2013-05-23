@@ -83,6 +83,13 @@
 		<?php endif; ?>
 		
 		<div class="row">
+			<?php if ($page['sidebar_first']): ?>
+				<div class="span3">
+					<aside id="sidebar">
+							<?php print render($page['sidebar_first']); ?>
+					</aside>
+				</div>
+			<?php endif; ?>
 			<section id="main-content" class="<?php echo ($page['sidebar_first']) ? 'span8' : 'span12'; ?>">
 				<?php if (($title && !$hide_title) || render($tabs) || render($breadcrumb)) : ?>
 					<header class="content clearfix">
@@ -135,13 +142,7 @@
 				<?php print render($page['content']); ?>
 			</section>
 			
-			<?php if ($page['sidebar_first']): ?>
-				<div class="span4">
-					<aside id="sidebar">
-							<?php print render($page['sidebar_first']); ?>
-					</aside>
-				</div>
-			<?php endif; ?>
+			
 		</div>
 		
 		<div class="row">
