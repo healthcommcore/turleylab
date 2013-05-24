@@ -56,7 +56,6 @@ jQuery(document).ready(function($) {
   
 	/**
 	 * Dropdown
-	 */
 	$('#main-menu li.expanded').hover(
 		function () {
 			var width = $(window).width();
@@ -73,13 +72,14 @@ jQuery(document).ready(function($) {
 			}
 		}
 	);
+	 */
 
 	/**
 	 * Indicator for dropdown menus
-	 */
 	$('#main-menu li.expanded').each(function() {
 		$(this).children('a').append(' &raquo;');
 	});
+	 */
 
 	/**
 	 * Responsive navigation
@@ -109,14 +109,14 @@ jQuery(document).ready(function($) {
 	 */
 	$(window).resize(function(){
 		var menu = $('#main-menu ul.menu:first-child');
-    if ($(window).width() >= 1023 && menu.is(':hidden')) {
+    if ($(window).width() >= 1022 && menu.is(':hidden')) {
       menu.show();
 
       // Hide submenus
       $('li.expanded ul', menu).hide();
     }
 
-    if ($(window).width() < 1023 && menu.is(':visible')) {
+    if ($(window).width() < 1022 && menu.is(':visible')) {
       menu.hide();
 
       // Show submenus
