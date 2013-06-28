@@ -36,6 +36,31 @@ body.pattern5 {background-image:url(images/pattern5.png);}
 
 /* ----- =Typography ----- */
 
+/** load fonts **/
+@font-face {
+    font-family: 'AllerRegular';
+    src: url('fonts/aller_rg-webfont.eot');
+    src: url('fonts/aller_rg-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/aller_rg-webfont.woff') format('woff'),
+         url('fonts/aller_rg-webfont.ttf') format('truetype'),
+         url('fonts/aller_rg-webfont.svg#AllerRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'AllerLightRegular';
+    src: url('fonts/aller_lt-webfont.eot');
+    src: url('fonts/aller_lt-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/aller_lt-webfont.woff') format('woff'),
+         url('fonts/aller_lt-webfont.ttf') format('truetype'),
+         url('fonts/aller_lt-webfont.svg#AllerLightRegular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
 	color:#505050;
 	font-family:Open Sans, Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -87,7 +112,7 @@ h1,h2,h3,h4,h5,h6{
 	margin:0 0 18px;
 }
 
-h1{font-size:32px;line-height:44px}
+h1{font-size:32px;line-height:44px; font-family:'AllerLightRegular' !important;}
 	h1#page-title {color:#525252;margin-bottom:22px;}
 h2{font-size:24px;line-height:36px;}
 h3{font-size:21px;line-height:33px;}
@@ -150,9 +175,7 @@ dl {
 }
 
 header#top {
-  background:#333739 url(images/header_desktop_bkrd.gif) 0 0 repeat-x;
-  border-top:1px solid #545b5d;
-  border-bottom:1px solid #232627;
+  background:#333739 url('images/header_desktop_bkgrd.gif') 0 0 repeat-x;
 	padding:24px 0;
 	position:relative;
 }
@@ -217,9 +240,8 @@ nav ul {
 }
 
 #main-menu {
-	background:#373b3d url(images/main-menu.png) repeat-x;
-	border-top:1px solid #4e5356;
-	border-bottom:1px solid #26292a;
+	background:#555555;
+	border-top:1px solid #00B700;
 	margin-bottom:0;
 }
 
@@ -228,8 +250,6 @@ nav ul {
 }
 
 #main-menu li {
-  border-right:1px solid #292c2d;
-  border-left:1px solid #4c5154;
   float:left;
   list-style:none;
 	margin:-1px 0;
@@ -237,24 +257,22 @@ nav ul {
 }
 
 #main-menu li.first {background:none;}
-#main-menu li.first a {margin-left:5px;}
 #main-menu li.last {margin-right:5px;border-right:none;}
 
 #main-menu a {
 	color:#d4d4d4;
+	font-size:1.5em;
 	display:block;
-	font-family:Arial, Helvetica, sans-serif;
-	font-weight:bold;
-	line-height:1em;
-	padding:11px 18px;
+  font-family: 'AllerLightRegular';
+	line-height:1.4em;
+	padding:12px 18px;
 	text-decoration:none;
-	text-shadow:0 -1px 0 #292c2d;
 }
 
-#main-menu li > a:hover, #main-menu li.expanded li > a:hover {
-	background-image:url(images/main-menu-hover.png);
-	background-repeat:repeat-x;
-	background-position:left top;
+#main-menu li > a:hover, #main-menu li.expanded li > a:hover,
+#main-menu li a.active {
+	background:#00B700;
+	color:#fff;
 }
 
 #main-menu li.expanded {
