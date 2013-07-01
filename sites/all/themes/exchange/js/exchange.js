@@ -159,7 +159,7 @@ jQuery(document).ready(function($) {
 		* Full height sidebar
 		*/
 		if($(window).width() >= 1024) {
-			sidebarHeight();
+			//sidebarHeight();
 			function sidebarHeight() {
 				if ($('#main-content').height() > $('#sidebar').height()) {
 					var diff = $('#main-content').height() - $('#sidebar').height();

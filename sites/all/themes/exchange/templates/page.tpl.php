@@ -1,6 +1,7 @@
 <?php
 ?>
 <div id="page" class="container">
+<div id="page_bkgrd">
 	<?php if (render($page['topbar_left']) || render($page['topbar_right']) || $secondary_menu): ?>
 		<div id="topbar">
 			<div class="row">
@@ -74,13 +75,6 @@
 	</nav>
 
 	<div id="main">
-		<?php if ($page['featured']): ?>
-			<div class="row">
-					<div id="featured" class="span12">
-						<?php print render($page['featured']); ?>
-					</div> <!-- /#featured -->
-			</div>
-		<?php endif; ?>
 		
 		<div class="row">
 			<?php if ($page['sidebar_first']): ?>
@@ -132,6 +126,14 @@
 				<?php if (isset($page['slider']) && !empty($page['slider'])): ?>
 					<?php print render($page['slider']); ?>
 				<?php endif; ?>
+
+		<?php if ($page['featured']): ?>
+			<div class="row">
+					<div id="featured" class="span12">
+						<?php print render($page['featured']); ?>
+					</div> <!-- /#featured -->
+			</div>
+		<?php endif; ?>
 			
 				<?php print render($page['help']); ?>
 				<?php if ($action_links): ?>
@@ -139,7 +141,7 @@
 						<?php print render($action_links); ?>
 					</ul>
 				<?php endif; ?>
-				<?php print render($page['content']); ?>
+				<?php if(!drupal_is_front_page()) print render($page['content']); ?>
 			</section>
 			
 			
@@ -186,4 +188,5 @@
       <?php endif; ?>
     </footer>
   <?php endif; ?>
+</div>
 </div>

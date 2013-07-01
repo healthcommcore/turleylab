@@ -17,11 +17,11 @@ body.pattern5 {background-image:url(images/pattern5.png);}
   padding:0 18px;
 }
 
+#page_bkgrd{background:#2F2F2F;}
+
 #main {
 	background:#ffffff;
-	border-top:5px solid #f2f2f2;
 	position:relative;
-	padding:19px 23px 30px;
 }
 
 @media (max-width:1025px){
@@ -31,8 +31,9 @@ body.pattern5 {background-image:url(images/pattern5.png);}
 }
 
 #featured {
-  margin-bottom:30px;
 }
+
+.home_message{background:url('images/home_mssg_bkgrd.gif') 0 0 repeat-x; height:164px;}
 
 /* ----- =Typography ----- */
 
@@ -352,6 +353,7 @@ nav ul {
 		display:none;
 	}
 
+
 	#main-menu .open-menu {
 		cursor:pointer;
 		display:block;
@@ -426,11 +428,7 @@ nav ul {
 #sidebar {
 /*	background:url(images/sidebar.png) repeat-y left top;
 	border-top:5px solid #f2f2f2;*/
-	padding-bottom:30px;
-	padding-top:30px;
 	padding-left:30px;
-	margin-top:-24px;
-	margin-bottom:-24px;
 }
 
 #sidebar .block {
@@ -726,11 +724,10 @@ footer {
 /* ----- =Slider ----- */
 
 #slider-container {
-	background-color:#4d3c4c;
+	background-color:#000;
 	background-repeat:no-repeat;
 	background-position:center center;
 	width:100%;
-	margin-bottom:30px;
 }
 
 #slider {
