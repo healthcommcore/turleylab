@@ -148,10 +148,12 @@ jQuery(document).ready(function($) {
       var docHeight = $(document.body).height() - $("#sticky-footer-push").height();
       if(docHeight < $(window).height()){
         var diff = $(window).height() - docHeight;
+				/*
         if (!$("#sticky-footer-push").length > 0) {
           $("#main-content").append('<div id="sticky-footer-push"></div>');
         }
         $("#sticky-footer-push").height(diff);
+				*/
       }
     }
 

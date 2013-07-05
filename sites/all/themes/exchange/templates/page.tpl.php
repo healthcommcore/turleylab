@@ -86,6 +86,7 @@
 			<?php endif; ?>
 			<section id="main-content" class="<?php echo ($page['sidebar_first']) ? 'span8' : 'span12'; ?>">
 				<?php if (($title && !$hide_title) || render($tabs) || render($breadcrumb)) : ?>
+				<article>
 					<header class="content clearfix">
 						<?php if ($breadcrumb): ?>
 							<?php print $breadcrumb; ?>
@@ -142,6 +143,7 @@
 					</ul>
 				<?php endif; ?>
 				<?php if(!drupal_is_front_page()) print render($page['content']); ?>
+			</article>
 			</section>
 			
 			
@@ -162,10 +164,10 @@
     <footer>
       <?php if ($page['footer_firstcolumn'] || $page['footer_secondcolumn'] || $page['footer_thirdcolumn']): ?>
         <div id="footer-main" class="row">
-          <div class="span4 footer-column">
+          <div class="span6 footer-column">
             <?php print render($page['footer_firstcolumn']); ?>
           </div>
-          <div class="span4 footer-column">
+          <div class="span2 footer-column">
             <?php print render($page['footer_secondcolumn']); ?>
           </div>
           <div class="span4 footer-column">
