@@ -35,7 +35,6 @@ article{margin-top:60px;}
 #featured {
 }
 
-.home_message{background:url('images/home_mssg_bkgrd.gif') 0 0 repeat-x; height:164px;}
 
 /* ----- =Typography ----- */
 
@@ -126,12 +125,6 @@ h6{font-size:14px;line-height:26px;}
 h1.nm,h2.nm,h3.nm,h4.nm,h5.nm,h6.nm{margin-bottom:6px;}
 h1.nb,h2.nb,h3.nb,h4.nb,h5.nb,h6.nb{font-weight:normal;}
 
-.home_message header{font-size:2.6em; display:block;margin-right:100px; margin-top:30px;}
-.home_message .smaller_words{font-family:'AllerLightRegular'; color:#B5BDC8; float:right; line-height:1.1em;}
-.home_message .smaller_words:last-child{margin-right:-30px;}
-.home_message .bigword{color:#DADEE4; float:left; font-size:1.7em; font-family:'AllerRegular'; letter-spacing:-.02em;  padding: 0 0 18px 114px; background:url('images/line.gif') -258px 37px no-repeat;}
-.home_message .bigword, .home_message .smaller_words{display:inline-block;}
-
 a {
 	color:#e34d26;
 	text-decoration:none;
@@ -151,6 +144,49 @@ pre {
 
 dl {
   margin:0 0 18px;
+}
+
+ /** HCC MODS **/
+.home_message{background:url('images/home_mssg_bkgrd.gif') 0 0 repeat-x; height:164px;}
+.home_message header{font-size:2.6em; display:block;margin-right:100px; margin-top:30px;}
+.home_message .smaller_words{font-family:'AllerLightRegular'; color:#B5BDC8; float:right; line-height:1.1em;}
+.home_message .smaller_words:last-child{margin-right:-30px;}
+.home_message .bigword{color:#DADEE4; float:left; font-size:1.7em; font-family:'AllerRegular'; letter-spacing:-.02em;  padding: 0 0 18px 114px; background:url('images/line.gif') -258px 37px no-repeat;}
+.home_message .bigword, .home_message .smaller_words{display:inline-block;}
+
+/* ----- =Footer ----- */
+
+footer {
+	border-top:#444 23px solid;
+	background:#333;
+	color:#f5f5f5;
+}
+div.footer_logos{margin: 10px 0 0 22px;}
+div.footer_logos, div.footer_logos img{float:left;}
+div.footer_logos img{margin-right:40px;}
+div.footer_links{float:right; text-align:right;margin-right:32px; }
+div.footer_links nav ul, div.footer_links nav li{list-style-image:none; list-style:none;}
+div.footer_links, div.footer_links nav a, div.footer_links .legal a{color:#aaa;}
+div.footer_links nav li{background:none; padding:0 13px; border-right:#bbb 1px solid; height:auto; line-height:1em; float:left;}
+div.footer_links nav li:last-child{padding-right:0; border:0;}
+div.footer_links nav a { padding:0; display:inline; font-size:1em;}
+div.footer_links nav ul{float:right;}
+div.footer_links .legal,div.footer_links .legal a {}
+div.footer_links .legal{clear:right; font-size:.8em; line-height:1.6em;}
+div.footer_links .legal a{ text-decoration:underline; margin-left:3px;}
+
+
+
+@media (max-width: 1023px) {
+	.home_message{height:145px;}
+.home_message header{font-size:1.9em; margin-top:25px;}
+.home_message .bigword{font-size:2em; padding:0 0 18px 50px; margin-top:-5px;}
+.home_message .smaller_words{margin:0 -17px 0 0;}
+
+footer .span2{display:none;}
+footer .span4{width:300px;}
+div.footer_links{margin-right:0;}
+div.footer_logos img{margin-bottom:20px;}
 }
 
 /* ----- =Header ----- */
@@ -547,26 +583,6 @@ nav ul {
 
 /* ----- =Triptychs ----- */
 
-/* ----- =Footer ----- */
-
-footer {
-	border-top:#444 23px solid;
-	background:#333;
-	color:#f5f5f5;
-}
-div.footer_logos{margin: 10px 0 0 22px;}
-div.footer_logos, div.footer_logos img{float:left;}
-div.footer_logos img{margin-right:40px;}
-div.footer_links{float:right; text-align:right;margin-right:32px; }
-div.footer_links nav ul, div.footer_links nav li{list-style-image:none; list-style:none;}
-div.footer_links, div.footer_links nav a, div.footer_links .legal a{color:#aaa;}
-div.footer_links nav li{background:none; padding:0 13px; border-right:#bbb 1px solid; height:auto; line-height:1em; float:left;}
-div.footer_links nav li:last-child{padding-right:0; border:0;}
-div.footer_links nav a { padding:0; display:inline; font-size:1em;}
-div.footer_links nav ul{float:right; margin:0 0 10px 0;}
-div.footer_links .legal,div.footer_links .legal a {}
-div.footer_links .legal{clear:right; font-size:.8em; line-height:1.6em;}
-div.footer_links .legal a{ text-decoration:underline; margin-left:3px;}
 
 
 
