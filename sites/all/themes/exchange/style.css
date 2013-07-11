@@ -114,8 +114,8 @@ h1,h2,h3,h4,h5,h6{
 	margin:0 0 18px;
 }
 
-h1{font-size:32px;line-height:44px; font-family:'AllerLightRegular' !important;}
-	h1#page-title {color:#525252;margin-bottom:22px;}
+h1{font-size:32px;line-height:1.15em; font-family:'AllerLightRegular' !important;}
+	h1#page-title {color:#9D0827;margin-bottom:22px; border-bottom:#9D0827 1px solid;}
 h2{font-size:24px;line-height:36px;}
 h3{font-size:21px;line-height:33px;}
 h4{font-size:18px;line-height:30px;}
@@ -148,11 +148,17 @@ dl {
 
  /** HCC MODS **/
 .home_message{background:url('images/home_mssg_bkgrd.gif') 0 0 repeat-x; height:164px;}
-.home_message header{font-size:2.6em; display:block;margin-right:100px; margin-top:30px;}
+.home_message header{font-size:2.1em; display:block;margin-right:100px; margin-top:30px;}
 .home_message .smaller_words{font-family:'AllerLightRegular'; color:#B5BDC8; float:right; line-height:1.1em;}
 .home_message .smaller_words:last-child{margin-right:-30px;}
 .home_message .bigword{color:#DADEE4; float:left; font-size:1.7em; font-family:'AllerRegular'; letter-spacing:-.02em;  padding: 0 0 18px 114px; background:url('images/line.gif') -258px 37px no-repeat;}
 .home_message .bigword, .home_message .smaller_words{display:inline-block;}
+
+#sidebar{margin-top:120px;}
+.subnav{}
+#sidebar .subnav li{list-style:none; list-style-image:none; margin-bottom:10px;}
+
+.region-content{width:85%;}
 
 /* ----- =Footer ----- */
 
@@ -178,15 +184,19 @@ div.footer_links .legal a{ text-decoration:underline; margin-left:3px;}
 
 
 @media (max-width: 1023px) {
+	article{margin-left:40px;}
+	#main .span8{width:93%;}
 	.home_message{height:145px;}
-.home_message header{font-size:1.9em; margin-top:25px;}
+.home_message header{font-size:1.6em; margin-top:25px;}
 .home_message .bigword{font-size:2em; padding:0 0 18px 50px; margin-top:-5px;}
-.home_message .smaller_words{margin:0 -17px 0 0;}
+.home_message .smaller_words{margin:0 -40px 0 0;}
+.home_message .smaller_words:last-child{margin-right:-60px;}
 
 footer .span2{display:none;}
 footer .span4{width:300px;}
 div.footer_links{margin-right:0;}
 div.footer_logos img{margin-bottom:20px;}
+
 }
 
 /* ----- =Header ----- */
@@ -306,7 +316,7 @@ nav ul {
 
 #main-menu a {
 	color:#d4d4d4;
-	font-size:1.5em;
+	font-size:1.2em;
 	display:block;
   font-family: 'AllerLightRegular';
 	line-height:1.4em;

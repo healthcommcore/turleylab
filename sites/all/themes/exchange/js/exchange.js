@@ -170,5 +170,24 @@ jQuery(document).ready(function($) {
 				}
 			}
 		}
+
+		/**
+		* Omit sidebar based on window size
+		*/
+			var span3 = $('#sidebar').parent();
+			sidebarResize();
+			$(window).resize(function(){
+				sidebarResize();
+			});
+
+			function sidebarResize(){
+				if($(window).width() > 1024){
+					span3.css('display', 'inline');
+				}
+				else{
+					span3.css('display', 'none');
+				}
+			}
+		//});
   });
 })(jQuery);
