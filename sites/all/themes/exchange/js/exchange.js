@@ -109,14 +109,14 @@ jQuery(document).ready(function($) {
 	 */
 	$(window).resize(function(){
 		var menu = $('#main-menu ul.menu:first-child');
-    if ($(window).width() >= 1022 && menu.is(':hidden')) {
+    if ($(window).width() >= 1024 && menu.is(':hidden')) {
       menu.show();
 
       // Hide submenus
       $('li.expanded ul', menu).hide();
     }
 
-    if ($(window).width() < 1022 && menu.is(':visible')) {
+    if ($(window).width() < 1024 && menu.is(':visible')) {
       menu.hide();
 
       // Show submenus

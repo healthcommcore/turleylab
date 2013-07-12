@@ -13,6 +13,7 @@ scripts[] = js/exchange.js
 plugins[panels][layouts] = layouts
 
 regions[sidebar_first] = Sidebar
+regions[sidebar_second] = Right sidebar
 regions[content] = Content
 regions[featured] = Featured
 regions[footer_firstcolumn] = Footer first column

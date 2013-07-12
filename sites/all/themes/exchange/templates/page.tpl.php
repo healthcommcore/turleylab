@@ -84,7 +84,18 @@
 					</aside>
 				</div>
 			<?php endif; ?>
-			<section id="main-content" class="<?php echo ($page['sidebar_first']) ? 'span8' : 'span12'; ?>">
+			<?php
+				$spanNum;
+				if($page['sidebar_first'] && $page['sidebar_second'])
+					$spanNum = 'span6';
+				else if($page['sidebar_first'])
+					$spanNum = 'span8';
+				else if($page['sidebar_second'])
+					$spanNum = 'span8';
+				else
+					$spanNum = 'span12';
+				?>
+			<section id="main-content" class="<?php echo $spanNum; ?>">
 				<?php if (($title && !$hide_title) || render($tabs) || render($breadcrumb)) : ?>
 				<article>
 					<header class="content clearfix">
@@ -93,7 +104,7 @@
 						<?php endif; ?>
 						
             <div class="row">
-              <div class="<?php print $page['sidebar_first'] ? 'span8' : 'span12'; ?>">
+              <div class="<?php print $spanNum; ?>">
                 <?php print render($title_prefix); ?>
                 <?php if ($title && !$hide_title): ?>
                   <h1 id="page-title">
@@ -145,6 +156,17 @@
 				<?php if(!drupal_is_front_page()) print render($page['content']); ?>
 			</article>
 			</section>
+
+<!-- Right sidebar -->
+			<?php if ($page['sidebar_second']): ?>
+			<div id="right_sidebar">
+				<div class="span3">
+					<aside>
+							<?php print render($page['sidebar_second']); ?>
+					</aside>
+				</div>
+			</div>
+			<?php endif; ?>
 			
 			
 		</div>
