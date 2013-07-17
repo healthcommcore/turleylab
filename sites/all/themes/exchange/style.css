@@ -63,6 +63,30 @@ article{margin:60px 0;}
 
 }
 
+@font-face {
+    font-family: 'AllerBold';
+    src: url('fonts/aller_bd-webfont.eot');
+    src: url('fonts/aller_bd-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/aller_bd-webfont.woff') format('woff'),
+         url('fonts/aller_bd-webfont.ttf') format('truetype'),
+         url('fonts/aller_bd-webfont.svg#AllerBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'OpenSansBold';
+    src: url('fonts/OpenSans-Bold-webfont.eot');
+    src: url('fonts/OpenSans-Bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/OpenSans-Bold-webfont.woff') format('woff'),
+         url('fonts/OpenSans-Bold-webfont.ttf') format('truetype'),
+         url('fonts/OpenSans-Bold-webfont.svg#OpenSansBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 body {
 	color:#505050;
 	font-family:Open Sans, Arial, "Helvetica Neue", Helvetica, sans-serif;
@@ -108,15 +132,13 @@ blockquote.pull-right {
 }
 
 h1,h2,h3,h4,h5,h6{
-	color:#e34d25;
   display:block;
-	font-weight:bold;
-	margin:0 0 18px;
+	font-weight:normal;
 }
 
-h1{font-size:32px;line-height:1.15em; font-family:'AllerLightRegular' !important;}
+h1{font-size:32px;line-height:1.15em; font-family:'AllerRegular' !important;}
 	h1#page-title {color:#9D0827;margin-bottom:22px; border-bottom:#9D0827 1px solid;}
-h2{font-size:24px;line-height:36px;}
+h2{font-size:24px;line-height:36px; color:#525252; font-family:'OpensansBold' !important;text-transform:uppercase;margin:0;}
 h3{font-size:21px;line-height:33px;}
 h4{font-size:18px;line-height:30px;}
 h5{font-size:16px;line-height:28px;}
@@ -157,7 +179,18 @@ dl {
 #sidebar{margin-top:120px;}
 .subnav{}
 #sidebar .subnav li{list-style:none; list-style-image:none; margin-bottom:10px;}
-#right_sidebar{float:right; background:#bbb; padding-bottom:30000px; margin-bottom:-30000px;}
+#right_sidebar{float:right; background:#ccc; padding-bottom:30000px; margin-bottom:-30000px; padding-top:20px;}
+#right_sidebar .span3{margin-left:23px;}
+
+/* Members area */
+.field-name-field-member-image .field-label{display:none;}
+.field-name-field-member-image .field-items img{float:left; margin:0 15px 15px 0;}
+.field-name-field-publications p{font-size:0.8em; line-height:1.3em;}
+
+.bottomspace{margin-bottom:40px;}
+.member_photo{float:left; margin:0 15px 15px 0;}
+
+.form-item-search-block-form{font-size:.8em;}
 
 .region-content{width:85%;}
 
@@ -179,7 +212,7 @@ div.footer_links nav li:last-child{padding-right:0; border:0;}
 div.footer_links nav a { padding:0; display:inline; font-size:1em;}
 div.footer_links nav ul{float:right;}
 div.footer_links .legal,div.footer_links .legal a {}
-div.footer_links .legal{clear:right; font-size:.8em; line-height:1.6em;}
+div.footer_links .legal{clear:right; font-size:.65em; line-height:1.6em;}
 div.footer_links .legal a{ text-decoration:underline; margin-left:3px;}
 
 
@@ -483,7 +516,7 @@ nav ul {
 #sidebar {
 /*	background:url(images/sidebar.png) repeat-y left top;
 	border-top:5px solid #f2f2f2;*/
-	padding-left:30px;
+	padding-left:20px;
 }
 
 #sidebar .block {
