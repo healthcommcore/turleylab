@@ -179,12 +179,12 @@ dl {
 #sidebar{margin-top:120px;}
 .subnav{}
 #sidebar .subnav li{list-style:none; list-style-image:none; margin-bottom:10px;}
-#right_sidebar{float:right; background:#ccc; padding-bottom:30000px; margin-bottom:-30000px; padding-top:20px;}
+#right_sidebar{float:right; background:#aaa; padding-bottom:30000px; margin-bottom:-30000px; padding-top:20px;}
 #right_sidebar .span3{margin-left:23px;}
 
 /* Members area */
 .field-name-field-member-image .field-label{display:none;}
-.field-name-field-member-image .field-items img{float:left; margin:0 15px 15px 0;}
+.field-name-field-member-image .field-items img, .field-name-field-gallery-image img{float:left; margin:0 15px 15px 0;}
 .field-name-field-publications p{font-size:0.8em; line-height:1.3em;}
 
 .bottomspace{margin-bottom:40px;}
