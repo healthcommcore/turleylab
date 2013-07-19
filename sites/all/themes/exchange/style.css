@@ -26,6 +26,8 @@ body.pattern5 {background-image:url(images/pattern5.png);}
 
 article{margin:60px 0;}
 
+strong{font-family:'OpensansBold'; font-weight:normal;}
+
 @media (max-width:1025px){
 	#page {
 		padding:0;
@@ -107,7 +109,6 @@ p.nm {
 ul,ol{margin:0 0 1.538em 3em;}
 li {margin:0 0 0.3em;}
 
-strong{font-weight:bold;}
 em,cite{font-style:italic;}
 small{font-size:0.846em;} /* 11px */
 
@@ -185,6 +186,7 @@ dl {
 /* Members area */
 .field-name-field-member-image .field-label{display:none;}
 .field-name-field-member-image .field-items img, .field-name-field-gallery-image img{float:left; margin:0 15px 15px 0;}
+.field-name-field-publications{padding:10px 18px; background:#f5f5f5;}
 .field-name-field-publications p{font-size:0.8em; line-height:1.3em;}
 
 .bottomspace{margin-bottom:40px;}
