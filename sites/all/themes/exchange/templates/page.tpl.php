@@ -153,7 +153,9 @@
 						<?php print render($action_links); ?>
 					</ul>
 				<?php endif; ?>
-				<?php if(!drupal_is_front_page()) print render($page['content']); ?>
+<?php echo drupal_is_front_page() ? "<div class='dontshow'>" : ''; ?>
+				<?php print render($page['content']); ?>
+<?php echo drupal_is_front_page() ? "</div>" : ''; ?>
 			</article>
 			</section>
 
