@@ -182,7 +182,7 @@ dl {
 #sidebar{margin-top:120px;}
 .subnav{}
 #sidebar .subnav li{list-style:none; list-style-image:none; margin-bottom:10px;}
-#sidebar .subnav li a{text-transform:uppercase; font-size:0.85em; display:block;}
+#sidebar .subnav li a{text-transform:capitalize; font-size:0.95em; display:block;}
 li a.active, #sidebar .subnav li a:hover{color:#fff; text-decoration:none;}
 #right_sidebar{float:right; background:#7E828B; padding-bottom:30000px; margin-bottom:-30000px; padding-top:20px;}
 #right_sidebar .span3{margin-left:23px;}
@@ -190,8 +190,8 @@ li a.active, #sidebar .subnav li a:hover{color:#fff; text-decoration:none;}
 /* Members area */
 .field-name-field-member-image .field-label{display:none;}
 .field-name-field-member-image .field-items img, .field-name-field-gallery-image img{float:left; margin:0 15px 15px 0;}
-.field-name-field-publications{padding:10px 18px; background:#3B3B3B;}
-.field-name-field-publications p{font-size:0.8em; line-height:1.3em;}
+.field-name-field-publications, .caption{padding:10px 18px; background:#3B3B3B;}
+.field-name-field-publications p, .caption p{font-size:0.8em; line-height:1.3em;}
 
 .bottomspace{margin-bottom:40px;}
 .member_photo{float:left; margin:0 15px 15px 0;}
