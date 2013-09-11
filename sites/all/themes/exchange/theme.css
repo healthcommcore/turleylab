@@ -182,7 +182,7 @@ dl {
 #sidebar{margin-top:120px;}
 .subnav{}
 #sidebar .subnav li{list-style:none; list-style-image:none; margin-bottom:10px;}
-#sidebar .subnav li a{text-transform:capitalize; font-size:0.95em; display:block;}
+#sidebar .subnav li a{font-size:0.95em; display:block;}
 li a.active, #sidebar .subnav li a:hover{color:#fff; text-decoration:none;}
 #right_sidebar{float:right; background:#7E828B; padding-bottom:30000px; margin-bottom:-30000px; padding-top:20px;}
 #right_sidebar .span3{margin-left:23px;}
