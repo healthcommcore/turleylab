@@ -157,48 +157,38 @@ jQuery(document).ready(function($) {
       }
     }
 
-		var testVar = document.getElementById('left_sidebar').className;
-		console.log(testVar);
 		/**
-		* Full height sidebar
-		if($(window).width() >= 1024) {
-			//sidebarHeight();
-			function sidebarHeight() {
-				if ($('#main-content').height() > $('#sidebar').height()) {
-					var diff = $('#main-content').height() - $('#sidebar').height();
-					$("#sidebar").append('<div id="sidebar-push"></div>');
-					$("#sidebar-push").height(diff);
-				}
+		 * Automatically run the resizeMainAndRight function upon page load and/or
+		 * if the browser window is resized
+		 */
+		resizeMainAndRight();
+		$(window).resize(function(){
+				resizeMainAndRight();
+		});
+
+		/**
+		 * function that resets span sizes for main content, left and right
+		 * sidebars depending on which ones are visible
+		 */
+		function resizeMainAndRight(){
+			var mainContent = document.getElementById('main-content');
+			var rightSidebar = document.getElementById('right_sidebar');
+			var leftColDisplay = $('#left_sidebar').css('display');
+			if((leftColDisplay == 'none' || leftColDisplay == null) && rightSidebar == null){
+				mainContent.className = 'span12';
+			}
+			else if(leftColDisplay == 'none'){
+				mainContent.className = 'span8';
+				rightSidebar.firstChild.nextSibling.className = 'span4';
+			}
+			else if(rightSidebar == null){
+				mainContent.className = 'span8';
+			}
+			else{
+				mainContent.className = 'span6';
+				rightSidebar.firstChild.nextSibling.className = 'span3';
 			}
 		}
-		var main = document.getElementById('main-content');
-		var rightColumn = document.getElementById('right_sidebar').firstChild.nextSibling;
-		var windowWidth = $(window).width();
-		$(window).resize(function(){
-				if(windowWidth < 1024 && windowWidth > 768){
-					main.className= 'span8';
-					rightColumn.className = 'span4';
-				}
-		});
-		*/
 
-		/**
-		* Omit sidebar based on window size
-			var span3 = $('#sidebar').parent();
-			reflow();
-			$(window).resize(function(){
-				reflow();
-			});
-
-			function reflow(){
-				if($(window).width() > 1024){
-					span3.css('display', 'inline');
-				}
-				else{
-					span3.css('display', 'none');
-				}
-			}
-		*/
-		//});
-  });
+	});
 })(jQuery);
