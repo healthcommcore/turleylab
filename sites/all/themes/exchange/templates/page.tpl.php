@@ -78,20 +78,24 @@
 		
 		<div class="row">
 			<?php if ($page['sidebar_first']): ?>
-				<div class="span3">
-					<aside id="sidebar">
-							<?php print render($page['sidebar_first']); ?>
-					</aside>
+				<div id="left_sidebar" class="visible-desktop">
+						<div class="span3">
+							<aside id="sidebar">
+									<?php print render($page['sidebar_first']); ?>
+							</aside>
+						</div>
 				</div>
 			<?php endif; ?>
 			<?php
 				$spanNum;
 				if($page['sidebar_first'] && $page['sidebar_second'])
 					$spanNum = 'span6';
-				else if($page['sidebar_first'])
+				else if($page['sidebar_first']){
 					$spanNum = 'span8';
-				else if($page['sidebar_second'])
+				}
+				else if($page['sidebar_second']){
 					$spanNum = 'span8';
+				}
 				else
 					$spanNum = 'span12';
 				?>

@@ -225,7 +225,6 @@ div.footer_links .legal a{ text-decoration:underline; margin-left:3px;}
 
 @media (max-width: 1023px) {
 	article{margin-left:40px;}
-	#main .span8{width:93%;}
 	.home_message{height:145px;}
 .home_message header{font-size:1.6em; margin-top:25px;}
 .home_message .bigword{font-size:2em; padding:0 0 18px 50px; margin-top:-5px;}
