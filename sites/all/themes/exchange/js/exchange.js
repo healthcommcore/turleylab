@@ -161,19 +161,23 @@ jQuery(document).ready(function($) {
 		 * Automatically run the resizeMainAndRight function upon page load and/or
 		 * if the browser window is resized
 		 */
-		resizeMainAndRight();
+		layoutRespond();
 		$(window).resize(function(){
-				resizeMainAndRight();
+			layoutRespond();
 		});
 
 		/**
 		 * function that resets span sizes for main content, left and right
 		 * sidebars depending on which ones are visible
 		 */
-		function resizeMainAndRight(){
+		function layoutRespond(){
 			var mainContent = document.getElementById('main-content');
 			var rightSidebar = document.getElementById('right_sidebar');
 			var leftColDisplay = $('#left_sidebar').css('display');
+
+			// stack right column under main column if width is too small
+			phoneRespond();
+			
 			if((leftColDisplay == 'none' || leftColDisplay == null) && rightSidebar == null){
 				mainContent.className = 'span12';
 			}
@@ -190,5 +194,15 @@ jQuery(document).ready(function($) {
 			}
 		}
 
+		function phoneRespond(){
+			var floatStyle = $(window).width() < 768 ? 'none' : 'right'; 
+			$('#right_sidebar').css('float', floatStyle);
+
+/*
+			var homeMessage = $('#featured');
+			var currHeight = homeMessage.height();
+			homeMessage.height(currHeight - 2);
+*/
+		}
 	});
 })(jQuery);
