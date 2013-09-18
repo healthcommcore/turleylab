@@ -171,6 +171,10 @@ dl {
 }
 
  /** HCC MODS **/
+.header_logos{margin:0;}
+.header_logos, .header_logos img{float:right;}
+.header_logos img{margin:0 20px; float:left;}
+
 .dontshow{display:none;}
 .home_message{background:url('images/home_mssg_bkgrd.gif') 0 0 repeat-x; height:164px;}
 .home_message header{font-size:2.1em; display:block;margin-right:100px; margin-top:30px;}
@@ -207,6 +211,18 @@ li a.active, #sidebar .subnav li a:hover{color:#fff; text-decoration:none;}
 .region-content{width:92%;}
 .even, .odd{}
 
+@media (max-width:1025px){
+	#topbar {
+		padding:0 20px;
+	}
+
+	#branding {
+		margin-bottom:20px;
+	}
+}
+
+
+
 /* ----- =Footer ----- */
 
 .footer-column {
@@ -241,13 +257,15 @@ footer {
 .home_message .smaller_words{margin:0 -40px 0 0;}
 .home_message .smaller_words:last-child{margin-right:-60px;}
 
+header .span8{width:466px;}
+
 footer .span2{display:none;}
 footer .span4{width:300px;}
 .footer_links{margin-right:0;}
 
 }
 
-@media (max-width: 767px) {
+@media (max-width:767px) {
 	#right_sidebar img{margin:0 auto; display:block;}
 	.home_message{height:120px;}
 	.home_message p{margin:0; padding:0;}
@@ -256,6 +274,13 @@ footer .span4{width:300px;}
 .home_message .bigword{font-size:1em; padding:0 .3em 0 0; margin-top:0;}
 .home_message .smaller_words{margin:0;}
 .home_message .smaller_words:last-child{margin-right:0px;}
+
+#branding{margin-bottom:10px;}
+header .span8{width:100%;}
+.header_logos, .header_logos img, .region-header .block{float:none;}
+.header_logos{margin:0 auto; width:300px;}
+.header_logos img{width:120px; margin:0 10px;}
+
 .footer_links, .footer_logos, .footer_logos img, .footer_links nav ul{float:none;}
 .footer_links, .footer_logos{margin:0 auto; display:block; text-align:center; }
 .footer_links .legal{display:block; clear:both;}
@@ -296,7 +321,7 @@ footer .span4{width:100%;}
 }
 
 header#top {
-  background:#333739 url('images/header_desktop_bkgrd.gif') 0 0 repeat-x;
+  background:#000 url('images/header_desktop_bkgrd.gif') 0 0 repeat-x;
 	padding:24px 0 10px 0;
 	position:relative;
 }
@@ -340,19 +365,11 @@ header#top .row {
 .region-header {
 }
 
+/*
 .region-header .block {
 	float:right;
 }
-
-@media (max-width:1025px){
-	#topbar {
-		padding:0 20px;
-	}
-
-	#branding {
-		margin-bottom:20px;
-	}
-}
+	*/
 
 /* ----- =Menus ----- */
 
